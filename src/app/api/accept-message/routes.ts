@@ -1,9 +1,8 @@
 import { getServerSession } from "next-auth";
 import { authOption } from "../auth/[...nextauth]/options";
-import { User } from "next-auth";
+
 import { UserModel } from "@/models/user.model";
 import dbConnection from "@/lib/dbConnection";
-import { success } from "zod";
 
 export async function POST(request: Request) {
   await dbConnection();
@@ -47,6 +46,7 @@ export async function POST(request: Request) {
       },
       { status: 200 },
     );
+
   } catch (error) {
     console.log("Failed to update user accept messages status", error);
     return Response.json(
@@ -58,6 +58,7 @@ export async function POST(request: Request) {
     );
   }
 }
+
 // GET method to send is user accepting messages
 
 export async function GET(request: Request) {
