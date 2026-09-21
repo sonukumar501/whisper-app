@@ -1,10 +1,10 @@
 import dbConnection from "@/lib/dbConnection";
 import { UserModel } from "@/models/user.model";
 import { z } from "zod";
-import { usernameValidation } from "@/schemas/signUpSchema";
+import { username } from "@/schemas/signUpSchema";
 
 const usernameQuery = z.object({
-  username: usernameValidation,
+  username: username,
 });
 
 export async function GET(request: Request) {
@@ -21,7 +21,7 @@ export async function GET(request: Request) {
 
     const result = usernameQuery.safeParse(queryParams);
 
-    console.log(result); //remove it after log
+   //remove it after log
 
     if (!result.success) {
       const usernameErrors = result.error.format().username?._errors;
@@ -29,7 +29,7 @@ export async function GET(request: Request) {
       return Response.json(
         {
           success: false,
-          message: "409 Invalid user name",
+          message: "Invalid user name",
         },
         { status: 409 },
       );
@@ -45,7 +45,7 @@ export async function GET(request: Request) {
       return Response.json(
         {
           success: false,
-          message: "409 username dose not exist",
+          message: "username dose not exist",
         },
         { status: 409 },
       );
@@ -53,7 +53,7 @@ export async function GET(request: Request) {
     return Response.json(
       {
         success: true,
-        message: "200 User name is unique",
+        message: "User name is unique",
       },
       { status: 200 },
     );
