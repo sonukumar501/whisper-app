@@ -1,8 +1,7 @@
 "use client";
 
-import {useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
-
 
 interface VantaBackgroundProps {
   children: React.ReactNode;
@@ -20,34 +19,34 @@ export default function VantaBackground({
     if (!vantaEffect.current && vantaRef.current) {
       import("vanta/dist/vanta.birds.min").then((importedModule) => {
         if (vantaEffect.current || !vantaRef.current) return;
+        const isMobile = window.matchMedia("(max-width:768px)").matches;
         const BIRDS = importedModule.default ?? importedModule;
         vantaEffect.current = BIRDS({
           el: vantaRef.current,
           THREE,
-          mouseControls: true,
+          mouseControls: !isMobile,
           touchControls: true,
-          gyroControls: true,
           minHeight: 200,
           minWidth: 200,
           scale: 1.0,
           scaleMobile: 1.0,
-          birdSize: 1,
-          wingSpan: 30,
-          speedLimit: 5,
-          separation: 50,
-          alignment: 20,
+          birdSize: isMobile ? 0.7 : 1,
+          wingSpan: isMobile ? 20 : 30,
+          speedLimit: isMobile ? 2 : 5,
+          separation: isMobile ? 35 : 50,
+          alignment: isMobile ? 15 : 20,
           cohesion: 20,
-          quantity: 8,
+          quantity: isMobile ? 3 : 8,
           backgroundColor: 0xffffff,
-        })
+        });
       });
     }
-    return ()=>{
-      if(vantaEffect.current){
+    return () => {
+      if (vantaEffect.current) {
         vantaEffect.current.destroy();
         vantaEffect.current = null;
       }
-    }
+    };
   }, []);
 
   return (
