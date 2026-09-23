@@ -27,13 +27,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import {
-  Field,
-
-  FieldError,
-
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 
 const Page = () => {
   const [username, setUsername] = useState("");
@@ -114,18 +108,19 @@ const Page = () => {
     setIsSubmitting(true);
     try {
       const res = await axios.post<ApiResponse>(`/api/sign-up`, data);
-      if (res.status == 200) {
+      console.log(res);
+      if (res.status == 201) {
         toast.add({
           title: "Success",
           description: res.data.message,
         });
-        router.replace(`/user-verification/${username}`);
+        // router.replace(`/user-verification/${username}`);
       }
+    } catch (error) {
       toast.add({
         title: "unsuccess",
         description: res.data.message,
       });
-    } catch (error) {
       console.error(
         "Error 500 something went wrong while registering user",
         error,
@@ -135,8 +130,14 @@ const Page = () => {
     }
   };
   return (
-    <VantaBackground className="w-screen h-screen flex justify-center items-center">
-      <Card className="min-w-100 min-h-125 rounded-none bg-white backdrop-blur-[1px] shadow-indigo-500 shadow-2xl/40">
+    <VantaBackground
+      className="w-screen h-screen flex 
+    justify-center items-center"
+    >
+      <Card
+        className="min-w-100 min-h-125 rounded-none bg-white backdrop-blur-[1px] 
+      shadow-indigo-500 shadow-2xl/40 overflow-hidden"
+      >
         <CardHeader className="flex flex-col gap-2">
           <CardTitle className="relative flex items-center">
             <Image
@@ -158,27 +159,27 @@ const Page = () => {
         <CardContent>
           <form id="sign-up-form" onSubmit={form.handleSubmit(handelOnSubmit)}>
             <Controller
-              name="email"
+              name="username"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel
-                    className="font-bold"
+                    className="font-semibold text-xs text-gray-500"
                     htmlFor="form-sign-up-username"
                   >
-                    Username
+                    User name
                   </FieldLabel>
                   <Input
                     {...field}
                     id="form-sign-up-username"
                     type="text"
-                    placeholder="sonu14feb"
+                    placeholder="Enter your username"
                     autoComplete="off"
                     onChange={(e) => {
                       field.onChange(e);
                       setUsername(e.target.value);
                     }}
-                    className="rounded-xl"
+                    className="rounded-xs text-xs"
                   />
 
                   {fieldState.invalid && (
@@ -189,12 +190,12 @@ const Page = () => {
               )}
             />
             <Controller
-              name="username"
+              name="email"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel
-                    className="font-bold mt-4"
+                    className="font-semibold text-xs mt-4 text-gray-500"
                     htmlFor="form-sign-up-email"
                   >
                     Email
@@ -203,9 +204,9 @@ const Page = () => {
                     {...field}
                     id="form-sign-up-email"
                     type="text"
-                    placeholder="sk@gmail.com"
+                    placeholder="Enter you email"
                     autoComplete="off"
-                    className="rounded-xl"
+                    className="rounded-xs text-xs"
                   />
 
                   {fieldState.invalid && (
@@ -220,7 +221,7 @@ const Page = () => {
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel
-                    className="font-bold mt-4"
+                    className="font-semibold text-xs mt-4 text-gray-500"
                     htmlFor="form-sign-up-password"
                   >
                     Password
@@ -229,9 +230,9 @@ const Page = () => {
                     {...field}
                     id="form-sign-up-email"
                     type="password"
-                    placeholder="At lest 8 characters"
+                    placeholder="Enter your password"
                     autoComplete="new-password"
-                    className="rounded-xl"
+                    className="rounded-xs text-xs"
                   />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
@@ -241,13 +242,28 @@ const Page = () => {
             />
           </form>
         </CardContent>
-        <CardFooter className="flex flex-col gap-2 items-start border-t-0 bg-white">
-          <div className="flex w-full justify-center gap-10 items-center">
-            <button className=""><FcGoogle size={28} /></button>
-            <button className=""><FaApple size={28} /></button>
-            <button className=""><FaSquareXTwitter size={28} /></button>
+        <CardFooter className="flex flex-col items-start border-t-0 bg-white">
+          <div className="flex flex-col w-full items-center gap-2 justify-center">
+            <button
+              className="text-xs w-full border-2 rounded-xs
+           p-1 justify-center flex items-center font-semibold gap-1"
+            >
+              <FcGoogle size={20} />
+              Google
+            </button>
+            <button
+              className="text-xs w-full border-2 rounded-xs
+           p-1 justify-center flex items-center font-semibold gap-1"
+            >
+              <FaApple size={20} />
+              Apple
+            </button>
           </div>
-          <Button type="submit" className="w-full bg-indigo-500 rounded-xl mt-4">
+          <Button
+            type="submit"
+            form="sign-up-form"
+            className="w-full  rounded-xs bg-indigo-500 mt-4"
+          >
             Create Account
           </Button>
         </CardFooter>
