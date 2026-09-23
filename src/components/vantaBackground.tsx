@@ -36,7 +36,7 @@ export default function VantaBackground({
           separation: isMobile ? 35 : 50,
           alignment: isMobile ? 15 : 20,
           cohesion: 20,
-          quantity: isMobile ? 3 : 8,
+          quantity: isMobile ? 5 : 8,
           backgroundColor: 0xffffff,
         });
       });
