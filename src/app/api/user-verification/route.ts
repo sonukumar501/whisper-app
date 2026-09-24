@@ -42,7 +42,7 @@ export async function POST(request: Request) {
         { status: 404 },
       );
     }
-    if (!user?.isVerified) {
+    if (user?.isVerified) {
       return Response.json(
         {
           success: false,
@@ -51,8 +51,12 @@ export async function POST(request: Request) {
         { status: 403 },
       );
     }
-    console.log(user.verificationCode);
-    if (!(user.verificationCode == verificationCode)) {
+
+    if (!(
+      user.verificationCode == verificationCode &&
+      user.verificationCodeExpiry &&
+      user.verificationCodeExpiry < new Date()
+    )) {
       return Response.json(
         {
           success: false,
@@ -62,6 +66,7 @@ export async function POST(request: Request) {
       );
     }
     user.isVerified = true;
+    user.verificationCodeExpiry = null;
     await user.save();
     return Response.json(
       {

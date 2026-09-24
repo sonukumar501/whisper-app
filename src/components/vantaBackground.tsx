@@ -50,7 +50,7 @@ export default function VantaBackground({
   }, []);
 
   return (
-    <div ref={vantaRef} className={className ?? "fixed inset-0 -z-10"}>
+    <div ref={vantaRef} className={className ?? "fixed inset-0 -z-10 "}>
       {children}
     </div>
   );

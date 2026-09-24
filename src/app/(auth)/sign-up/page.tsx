@@ -1,5 +1,7 @@
 "use client";
 import VantaBackground from "@/components/vantaBackground";
+import { signIn } from "next-auth/react";
+import { Spinner } from "@/components/ui/spinner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -36,7 +38,6 @@ const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loader, setLoader] = useState("");
   const router = useRouter();
 
   // Custom debouncing api call
@@ -114,11 +115,11 @@ const Page = () => {
           title: "Success",
           description: res.data.message,
         });
-        // router.replace(`/user-verification/${username}`);
+        router.replace(`/user-verification/${username}`);
         return;
       }
       toast.add({
-        title: "unsuccess",
+        title: "Unsuccess",
         description: res.data.message,
       });
     } catch (error) {
@@ -136,7 +137,7 @@ const Page = () => {
     justify-center items-center"
     >
       <Card
-        className="min-w-100 min-h-125 rounded-none bg-white backdrop-blur-[1px] 
+        className="w-[80%] md:w-100 md:h-125 rounded-none bg-white backdrop-blur-[1px] 
       shadow-indigo-500 shadow-2xl/40 overflow-hidden"
       >
         <CardHeader className="flex flex-col gap-2">
@@ -246,14 +247,15 @@ const Page = () => {
         <CardFooter className="flex flex-col items-start border-t-0 bg-white">
           <div className="flex flex-col w-full items-center gap-2 justify-center">
             <button
-              className="text-xs w-full border-2 rounded-xs
+              className="text-xs w-full border-2 rounded-xs hover:bg-gray-50
            p-1 justify-center flex items-center font-semibold gap-1"
+           onClick={()=>signIn("google",{callbackUrl:"/sign-up"})}
             >
               <FcGoogle size={20} />
               Google
             </button>
             <button
-              className="text-xs w-full border-2 rounded-xs
+              className="text-xs w-full border-2 rounded-xs hover:bg-gray-50
            p-1 justify-center flex items-center font-semibold gap-1"
             >
               <FaApple size={20} />
@@ -265,7 +267,13 @@ const Page = () => {
             form="sign-up-form"
             className="w-full  rounded-xs bg-indigo-500 mt-4"
           >
-            Create Account
+            {!isSubmitting ? (
+              "Create Account"
+            ) : (
+              <>
+                singing <Spinner />
+              </>
+            )}
           </Button>
         </CardFooter>
       </Card>

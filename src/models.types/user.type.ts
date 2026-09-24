@@ -5,8 +5,9 @@ export interface user extends Document {
   email: string;
   password: string;
   verificationCode: string;
-  verificationCodeExpiry: Date;
+  verificationCodeExpiry: Date|null;
   isAcceptingMessage: boolean;
   isVerified: boolean;
   messages: message[];
+  authProvider:string
 }

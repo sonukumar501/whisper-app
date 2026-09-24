@@ -12,19 +12,22 @@ const UserSchema: Schema<user> = new Schema(
     email: {
       type: String,
       required: [true, "Email is required"],
-      match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "valid email is required"],
+      match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Valid email is required"],
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: false,
+      default:null
     },
     verificationCode: {
       type: String,
-      required: [true, "Verification code is required"],
+      required: false,
+      default:null
     },
     verificationCodeExpiry: {
       type: Date,
-      required: [true, "Verification code expiry date is required"],
+      required: false,
+      default:null
     },
     isAcceptingMessage: {
       type: Boolean,
@@ -35,20 +38,30 @@ const UserSchema: Schema<user> = new Schema(
       type: Boolean,
       default: false,
     },
+    authProvider:{
+      type:String,
+      enum:["credentials", "google"],
+      default:"credentials"
+    }
   },
   { timestamps: true },
 );
 
 UserSchema.pre("save", async function () {
-  if (!this.isModified("password")) return;
+  if (!this.isModified("password")||!this.password) return;
   this.password = await bcrypt.hash(this.password, 10);
 });
 
 UserSchema.pre("validate", function () {
+  if (!this.verificationCode) {
+    this.verificationCodeExpiry = null;
+    return;
+  }
+
   const expiryDate = new Date();
   expiryDate.setHours(expiryDate.getHours() + 1);
+
   this.verificationCodeExpiry = expiryDate;
-  return;
 });
 
 export const UserModel =
