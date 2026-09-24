@@ -115,12 +115,13 @@ const Page = () => {
           description: res.data.message,
         });
         // router.replace(`/user-verification/${username}`);
+        return;
       }
-    } catch (error) {
       toast.add({
         title: "unsuccess",
         description: res.data.message,
       });
+    } catch (error) {
       console.error(
         "Error 500 something went wrong while registering user",
         error,
