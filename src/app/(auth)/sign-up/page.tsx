@@ -133,7 +133,7 @@ const Page = () => {
   };
   return (
     <VantaBackground
-      className="w-screen h-screen flex 
+      className="h-dvh w-screen md:h-screen flex 
     justify-center items-center"
     >
       <Card
