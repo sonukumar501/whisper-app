@@ -1,4 +1,5 @@
 "use client";
+import Log from "@/components/page/landing/log";
 import VantaBackground from "@/components/vantaBackground";
 import { signIn } from "next-auth/react";
 import { Spinner } from "@/components/ui/spinner";
@@ -140,21 +141,11 @@ const Page = () => {
         className="w-[80%] md:w-100 md:h-125 rounded-none bg-white backdrop-blur-[1px] 
       shadow-indigo-500 shadow-2xl/40 overflow-hidden"
       >
-        <CardHeader className="flex flex-col gap-2">
+        <CardHeader className="flex flex-col gap-0 mt-1">
           <CardTitle className="relative flex items-center">
-            <Image
-              src="https://res.cloudinary.com/c1831cid/image/upload/v1789476558/ChatGPT_Image_Sep_15_2026_06_18_26_PM.png"
-              width={62}
-              height={62}
-              alt="Wishiper logo"
-            />
-
-            <span className="-ml-2 font-logo text-4xl font-extrabold text-indigo-500 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.2)]">
-              hisper
-            </span>
+            <Log/>
           </CardTitle>
-
-          <CardDescription className="mt-1 text-sm leading-relaxed text-gray-500">
+          <CardDescription className="text-sm leading-relaxed text-gray-500">
             Begin your anonymous journey.
           </CardDescription>
         </CardHeader>
