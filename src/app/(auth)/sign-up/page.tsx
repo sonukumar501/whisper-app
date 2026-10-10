@@ -1,5 +1,5 @@
 "use client";
-import Log from "@/components/page/landing/log";
+import Log from "@/components/layout/log";
 import VantaBackground from "@/components/vantaBackground";
 import { signIn } from "next-auth/react";
 import { Spinner } from "@/components/ui/spinner";
@@ -143,7 +143,7 @@ const Page = () => {
       >
         <CardHeader className="flex flex-col gap-0 mt-1">
           <CardTitle className="relative flex items-center">
-            <Log/>
+            <Log />
           </CardTitle>
           <CardDescription className="text-sm leading-relaxed text-gray-500">
             Begin your anonymous journey.
@@ -240,7 +240,7 @@ const Page = () => {
             <button
               className="text-xs w-full border-2 rounded-xs hover:bg-gray-50
            p-1 justify-center flex items-center font-semibold gap-1"
-           onClick={()=>signIn("google",{callbackUrl:"/sign-up"})}
+              onClick={() => signIn("google", { callbackUrl: "/sign-up" })}
             >
               <FcGoogle size={20} />
               Google
