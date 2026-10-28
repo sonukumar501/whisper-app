@@ -14,7 +14,7 @@ export default function Hero() {
           <h1 className="text-6xl font-semibold leading-[1.05] tracking-tight">
             Talk Freely.
             <br />
-            Stay Anonymous
+            Stay <span className="text-violet-500"> Anonymous</span>
           </h1>
           <p className=" tracking-tight leading-relaxed text-gray-600 mt-4">
             Connect with new people, share what’s on your mind, and have real
@@ -23,9 +23,9 @@ export default function Hero() {
           </p>
           <div className="w-full flex justify-start mt-4 ">
             <button className="bg-indigo-500 text-md font-semibold text-white shadow-lg p-2 ml-34 rounded-md flex items-center gap-2">
-              Start Chatting <FaArrowRight/>
+              Start Chatting <FaArrowRight />
             </button>
-             <button className="text-md font-semibold border text-black shadow-lg p-2 ml-4 rounded-md">
+            <button className="text-md font-semibold border text-black shadow-lg p-2 ml-4 rounded-md">
               Explore Features
             </button>
           </div>
