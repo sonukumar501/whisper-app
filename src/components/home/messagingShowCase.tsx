@@ -24,6 +24,9 @@ function MessagingShowCase() {
           Conversations without any pressure
         </h1>
       </div>
+      <div>
+        
+      </div>
     </div>
   );
 }
