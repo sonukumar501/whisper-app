@@ -2,8 +2,20 @@
 import Navbar from "../layout/header";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 export default function Hero() {
+  const anonymousRef = useRef(null);
+  useGSAP(() => {
+    gsap.from(anonymousRef.current, {
+      filter: "blur(20px)",
+      duration: 1,
+      ease: "elastic.out",
+    });
+  });
+
   return (
     <section className="grid grid-cols-1 w-screen min-h-screen">
       {/* navbar */}
@@ -13,11 +25,16 @@ export default function Hero() {
 
       <div className="w-full min-h-[calc(100vh-80px)] grid grid-cols-2  ">
         {/* right section */}
+
         <div className="flex items-center justify-start flex-col mt-28 ">
           <h1 className="text-6xl font-semibold leading-[1.05] tracking-tight">
             Talk Freely.
             <br />
-            Stay <span className="text-violet-500"> Anonymous</span>
+            Stay{" "}
+            <span ref={anonymousRef} className="text-violet-500">
+              {" "}
+              Anonymous
+            </span>
           </h1>
           <p className=" tracking-tight leading-relaxed text-gray-600 mt-4 ml-1 font-sans  ">
             Connect with new people, share what’s on your mind, and have real
@@ -34,6 +51,7 @@ export default function Hero() {
           </div>
 
           {/* Supporting content */}
+
           <div className="mt-8 flex items-center gap-3 w-full pl-32">
             <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-violet-50 text-violet-600">
               <span className="text-xl">✦</span>
@@ -58,6 +76,8 @@ export default function Hero() {
             fill
             alt="Whisper chat illustration"
             className="object-contain object-top translate-y-24"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            preload
           />
         </div>
         {/* Soft curved transition */}
