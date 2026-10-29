@@ -11,10 +11,10 @@ export default function Hero() {
   useGSAP(() => {
     gsap.from(anonymousRef.current, {
       filter: "blur(20px)",
-      duration: 1,
+      duration: 1.5,
       ease: "elastic.out",
     });
-  });
+  },[]);
 
   return (
     <section className="grid grid-cols-1 w-screen min-h-screen">
