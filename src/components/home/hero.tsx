@@ -5,6 +5,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import SocialProofChips from "../layout/socialProofChips";
 
 export default function Hero() {
   const anonymousRef = useRef(null);
@@ -14,19 +15,19 @@ export default function Hero() {
       duration: 1.5,
       ease: "elastic.out",
     });
-  },[]);
+  }, []);
 
   return (
-    <section className="grid grid-cols-1 w-screen min-h-screen">
+    <section className="grid grid-cols-1 w-screen h-screen border ">
       {/* navbar */}
       <div className="">
         <Navbar />
       </div>
 
-      <div className="w-full min-h-[calc(100vh-80px)] grid grid-cols-2  ">
+      <div className="w-full min-h-[calc(100vh-80px)] grid grid-cols-2 items-end  ">
         {/* right section */}
 
-        <div className="flex items-center justify-start flex-col mt-28 ">
+        <div className="flex items-center justify-start flex-col mb-22">
           <h1 className="text-6xl font-semibold leading-[1.05] tracking-tight">
             Talk Freely.
             <br />
@@ -69,7 +70,7 @@ export default function Hero() {
         </div>
 
         {/* left section */}
-        <div className="w-165 relative flex justify-center h-full items-start ">
+        <div className="w-165 relative flex justify-center h-full items-start mb-2 ">
           <Image
             src="https://res.cloudinary.com/c1831cid/image/upload/v1791352895/hero-chat-white.jpg"
             draggable={false}
@@ -80,20 +81,9 @@ export default function Hero() {
             preload
           />
         </div>
-        {/* Soft curved transition */}
-        {/* <div className="pointer-events-none absolute bottom-0 left-0 z-0 w-full leading-0">
-          <svg
-            viewBox="0 0 1440 120"
-            preserveAspectRatio="none"
-            className="block h-[70px] w-full md:h-[100px]"
-            aria-hidden="true"
-          >
-            <path
-              d="M0,25 C360,120 1080,120 1440,25 L1440,120 L0,120 Z"
-              fill="#F8F7FF"
-            />
-          </svg>
-        </div> */}
+        <div className="col-span-full h-32 w-full bg-indigo-200/10 flex justify-around  shadow-xs shadow-gray-200 items-center">
+          <SocialProofChips />
+        </div>
       </div>
     </section>
   );
