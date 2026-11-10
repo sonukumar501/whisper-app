@@ -1,11 +1,11 @@
 "use client";
-import Navbar from "../layout/header";
+import Navbar from "./layout/header";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import SocialProofChips from "../layout/socialProofChips";
+import SocialProofChips from "./layout/socialProofChips";
 
 export default function Hero() {
   const anonymousRef = useRef(null);
@@ -18,16 +18,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="grid grid-cols-1 w-screen h-screen border ">
+    <section className="grid grid-cols-1 w-screen min-h-screen relative">
       {/* navbar */}
-      <div className="">
-        <Navbar />
-      </div>
+      <Navbar />
 
-      <div className="w-full min-h-[calc(100vh-80px)] grid grid-cols-2 items-end  ">
+      <div className="w-full min-h-[calc(100svh-80px)] grid grid-cols-2 items-end  ">
         {/* right section */}
 
-        <div className="flex items-center justify-start flex-col mb-22">
+        <div className=" flex items-center justify-start flex-col mb-22">
           <h1 className="text-6xl font-semibold leading-[1.05] tracking-tight">
             Talk Freely.
             <br />

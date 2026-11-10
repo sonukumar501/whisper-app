@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Great_Vibes,Pacifico } from "next/font/google";
+import { Geist, Geist_Mono, Great_Vibes,Pacifico,Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./context/AuthProvider";
 import { Toaster } from "@/components/ui/toast";
 import { Inter } from "next/font/google";
+import { Variable } from "lucide-react";
 
 const inter = {
   variable: "--font-inter",
   subset: ["latin"],
 };
+
+const grotesk = Space_Grotesk({
+  variable: "--font-grotesk-sans",
+  subsets: ["latin"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${greatVibes.variable} ${pacifico.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${greatVibes.variable} ${pacifico.variable} ${grotesk.variable}  h-full antialiased`}
     >
       <AuthProvider>
         <body className="min-h-full flex flex-col">
