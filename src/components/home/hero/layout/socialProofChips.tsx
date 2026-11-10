@@ -7,7 +7,7 @@ export default function SocialProofChips() {
     ["100%", "anonymous, always"],
   ];
   return (
-    <div className="flex w-full font-sans justify-around items-center">
+    <div className="flex w-full h-full font-sans justify-around items-center">
       {socialData.map(([stat, label]) => (
         <div key={label} className="flex items-center flex-col">
           <p className="font-extrabold text-2xl text-foreground">{stat}</p>

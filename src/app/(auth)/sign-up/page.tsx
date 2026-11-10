@@ -1,5 +1,5 @@
 "use client";
-import Log from "@/components/layout/log";
+import Log from "@/components/home/hero/layout/log";
 import VantaBackground from "@/components/vantaBackground";
 import { signIn } from "next-auth/react";
 import { Spinner } from "@/components/ui/spinner";
@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 import { SignUpSchema } from "@/schemas/signUpSchema";
 import { ApiResponse } from "@/types/ApiResponse.type";
-import Image from "next/image";
+
 
 // ui component importation
 import { Button } from "@/components/ui/button";
